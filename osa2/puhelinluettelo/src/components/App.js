@@ -123,6 +123,14 @@ const App = () => {
         setNewName('')
         setNewNumber('')
       })
+      .catch(error => {
+        setNewMessage(  
+          error.response.data.error
+        )
+        setTimeout(() => {
+          setNewMessage(null)
+        }, 5000)
+      })
   }
 
   const handleNameChange = (event)  =>
