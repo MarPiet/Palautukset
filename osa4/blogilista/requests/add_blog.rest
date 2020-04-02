@@ -1,0 +1,11 @@
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1hdHRpMTIzIiwiaWQiOiI1ZTg0OTJjNTZmYTZlMjJlZjQ4Yzg0OGEiLCJpYXQiOjE1ODU3NTE4NzJ9.AVpbeK9iscwLIowBjfD82K4Ftgd3r8jc7iTzC228e2E
+
+{
+    "title": "MyBlog",
+    "author": "Matti Meikäläinen",
+    "url": "https://fullstackopen.com/osa3/tietojen_tallettaminen_mongo_db_tietokantaan",
+    "likes": 5,
+    "userId": "5e83d2055456eb28dc5fa54b"
+}

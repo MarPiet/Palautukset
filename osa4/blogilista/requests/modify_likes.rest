@@ -1,0 +1,9 @@
+PUT http://localhost:3003/api/blogs/5e81ad494b62261754dd1611
+Content-Type: application/json
+
+{
+    "title": "MyBlog",
+    "author": "Matti",
+    "url": "https://fullstackopen.com/osa3/tietojen_tallettaminen_mongo_db_tietokantaan",
+    "likes": 10
+}
