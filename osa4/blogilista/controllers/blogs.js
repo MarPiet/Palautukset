@@ -4,7 +4,8 @@ const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 
 blogsRouter.get('/', async (request, response) => {
-  const blogs = await Blog.find({}).populate('user', { username: 1, name: 1 })
+  const blogs = await Blog.find({}).populate('user', { username: 1, name: 1 }
+  )
   response.json(blogs.map(blog => blog.toJSON()))
 })
 
@@ -25,13 +26,13 @@ blogsRouter.post('/', async (request, response) => {
     author: body.author,
     url: body.url,
     likes: body.likes,
-    user: user._id
+    user: user._id,
+    comments: []
   })
 
   if(blog.likes === null){
     blog.likes = 0
   }
-
   const savedBlog = await blog.save()
   user.blogs = user.blogs.concat(savedBlog._id)
   await user.save()
@@ -66,6 +67,15 @@ blogsRouter.put('/:id', async (request, response) => {
     url: body.url,
     likes: body.likes
   }
+  const updatedBlog = await Blog.findByIdAndUpdate(request.params.id, blog, { new : true })
+  response.json(updatedBlog.toJSON())
+})
+
+blogsRouter.post('/:id/comments', async (request, response) => {
+  const body = request.body
+  const comment = { comment: body.comment }
+  const blog = await Blog.findById(request.params.id)
+  blog.comments = blog.comments.concat(comment)
   const updatedBlog = await Blog.findByIdAndUpdate(request.params.id, blog, { new : true })
   response.json(updatedBlog.toJSON())
 })
